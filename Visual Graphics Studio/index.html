@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Graphics Studio</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+    }
+
+    /* Header Section */
+    header {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 50px 0;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.25rem;
+      margin-top: 15px;
+    }
+
+    header nav {
+      margin-top: 30px;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 15px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    header nav a:hover {
+      color: #ff7e5f;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+    .cta-button {
+      background-color: #ff7e5f;
+      color: white;
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #feb47b;
+    }
+
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin: 50px 20px;
+    }
+
+    .feature-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* About Section */
+    .about {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 20px;
+      background-color: #f0f0f0;
+    }
+
+    .about-text {
+      width: 60%;
+      margin-right: 30px;
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .about-text p {
+      font-size: 1.25rem;
+      color: #777;
+      line-height: 1.8;
+    }
+
+    .about-image {
+      width: 40%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* Footer Section */
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    footer p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    footer a {
+      color: #ff7e5f;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-text {
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .about-image {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Visual Graphics Studio</h1>
+    <p>Designing the Future, Today</p>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Transform Your Ideas Into Stunning Designs</h2>
+    <p>We provide professional design solutions that bring your brand to life.</p>
+    <button class="cta-button">Get Started</button>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="services">
+    <div class="feature-card">
+      <h3>Brand Identity</h3>
+      <p>Create a unique and memorable brand with our expert design services.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Web Design</h3>
+      <p>Build a modern, responsive website tailored to your business needs.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Print Materials</h3>
+      <p>Designing brochures, business cards, posters, and more for your brand.</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-text">
+      <h2>About Us</h2>
+      <p>At Visual Graphics Studio, we are passionate about creating beautiful and functional designs. With over 10 years of experience, our team is dedicated to bringing your creative visions to life through innovative design solutions.</p>
+    </div>
+    <div class="about-image">
+      <img src="https://via.placeholder.com/500x400" alt="About Us">
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Visual Graphics Studio | <a href="mailto:info@visualgraphics.com">Contact Us</a></p>
+  </footer>
+
+</body>
+</html>
