@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .balance {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .transaction-form {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .transaction-form input {
+            width: 48%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .transaction-form button {
+            width: 48%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .transaction-form button:hover {
+            background-color: #45a049;
+        }
+
+        .transactions-list {
+            margin-top: 20px;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .transaction-item span {
+            font-size: 16px;
+        }
+
+        .income {
+            color: green;
+        }
+
+        .expense {
+            color: red;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Finance Tracker</h1>
+        <div class="balance">
+            Balance: <span id="balanceAmount">$0</span>
+        </div>
+
+        <div class="transaction-form">
+            <input type="number" id="amount" placeholder="Amount">
+            <select id="transactionType">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <button onclick="addTransaction()">Add Transaction</button>
+        </div>
+
+        <div class="transactions-list" id="transactionsList">
+            <!-- Transaction items will appear here -->
+        </div>
+
+        <div class="footer">
+            <p>Finance App - Track your income and expenses</p>
+        </div>
+    </div>
+
+    <script>
+        let balance = 0;
+        const balanceAmount = document.getElementById('balanceAmount');
+        const transactionsList = document.getElementById('transactionsList');
+        const amountInput = document.getElementById('amount');
+        const transactionTypeSelect = document.getElementById('transactionType');
+
+        function updateBalance() {
+            balanceAmount.textContent = `$${balance.toFixed(2)}`;
+        }
+
+        function addTransaction() {
+            const amount = parseFloat(amountInput.value);
+            const transactionType = transactionTypeSelect.value;
+
+            if (isNaN(amount) || amount <= 0) {
+                alert("Please enter a valid amount.");
+                return;
+            }
+
+            // Update balance based on transaction type
+            if (transactionType === "income") {
+                balance += amount;
+            } else if (transactionType === "expense") {
+                balance -= amount;
+            }
+
+            updateBalance();
+            displayTransaction(amount, transactionType);
+
+            // Clear the input fields
+            amountInput.value = '';
+            transactionTypeSelect.value = 'income';
+        }
+
+        function displayTransaction(amount, type) {
+            const transactionItem = document.createElement('div');
+            transactionItem.classList.add('transaction-item');
+
+            const typeClass = type === "income" ? "income" : "expense";
+            transactionItem.innerHTML = `
+                <span class="${typeClass}">${type.charAt(0).toUpperCase() + type.slice(1)}: $${amount.toFixed(2)}</span>
+            `;
+            
+            transactionsList.appendChild(transactionItem);
+        }
+
+    </script>
+</body>
+</html>
