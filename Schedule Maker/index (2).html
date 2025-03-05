@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Maker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .schedule-container {
+            background-color: white;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .schedule-table th, .schedule-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .schedule-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .schedule-table td {
+            background-color: #f9f9f9;
+        }
+        input[type="text"], input[type="time"], button {
+            padding: 10px;
+            margin: 5px;
+            width: 80%;
+            max-width: 200px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .reminders {
+            margin-top: 30px;
+        }
+        .reminder-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Schedule Maker</h1>
+    <p>Track your daily schedule, create timetables, and set reminders.</p>
+</header>
+
+<div class="container">
+    <div class="schedule-container">
+        <div>
+            <h2 class="section-title">Create Your Daily Schedule</h2>
+            <input type="text" id="taskInput" placeholder="Enter Task">
+            <input type="time" id="timeInput">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+        
+        <h3 class="section-title">Your Schedule</h3>
+        <table class="schedule-table" id="scheduleTable">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Task</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Tasks will appear here -->
+            </tbody>
+        </table>
+
+        <div class="reminders">
+            <h3 class="section-title">Upcoming Events & Reminders</h3>
+            <input type="text" id="reminderInput" placeholder="Set Reminder">
+            <button onclick="addReminder()">Set Reminder</button>
+            <div id="reminderList">
+                <!-- Reminders will appear here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add a task to the schedule
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const timeInput = document.getElementById('timeInput');
+        
+        if (taskInput.value && timeInput.value) {
+            const table = document.getElementById('scheduleTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            const timeCell = newRow.insertCell(0);
+            const taskCell = newRow.insertCell(1);
+            const actionCell = newRow.insertCell(2);
+
+            timeCell.textContent = timeInput.value;
+            taskCell.textContent = taskInput.value;
+            actionCell.innerHTML = '<button onclick="removeTask(this)">Remove</button>';
+
+            taskInput.value = '';
+            timeInput.value = '';
+        } else {
+            alert('Please fill both the task and time fields.');
+        }
+    }
+
+    // Remove a task from the schedule
+    function removeTask(button) {
+        const row = button.parentNode.parentNode;
+        row.remove();
+    }
+
+    // Add a reminder
+    function addReminder() {
+        const reminderInput = document.getElementById('reminderInput');
+
+        if (reminderInput.value) {
+            const reminderList = document.getElementById('reminderList');
+            const newReminder = document.createElement('div');
+            newReminder.classList.add('reminder-item');
+            newReminder.textContent = reminderInput.value;
+
+            reminderList.appendChild(newReminder);
+            reminderInput.value = '';
+        } else {
+            alert('Please enter a reminder.');
+        }
+    }
+</script>
+
+</body>
+</html>
