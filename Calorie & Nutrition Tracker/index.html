@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .input-group {
+            margin: 15px 0;
+        }
+        .input-group label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .input-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .input-group button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .result ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .result ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calorie & Nutrition Tracker</h1>
+    
+    <div class="input-group">
+        <label for="food">Enter Food Item</label>
+        <input type="text" id="food" placeholder="e.g., Apple, Rice, Chicken">
+    </div>
+    
+    <div class="input-group">
+        <label for="calories">Calories (kcal)</label>
+        <input type="number" id="calories" placeholder="Enter calories in the food item">
+    </div>
+    
+    <div class="input-group">
+        <label for="protein">Protein (g)</label>
+        <input type="number" id="protein" placeholder="Enter protein content in grams">
+    </div>
+    
+    <div class="input-group">
+        <label for="carbs">Carbs (g)</label>
+        <input type="number" id="carbs" placeholder="Enter carbs content in grams">
+    </div>
+    
+    <div class="input-group">
+        <label for="fat">Fat (g)</label>
+        <input type="number" id="fat" placeholder="Enter fat content in grams">
+    </div>
+    
+    <div class="input-group">
+        <button onclick="addFood()">Add Food Item</button>
+    </div>
+    
+    <div class="result" id="result">
+        <h3>Today's Intake</h3>
+        <ul id="food-list">
+            <!-- Food items will appear here -->
+        </ul>
+        <hr>
+        <p><strong>Total Calories:</strong> <span id="total-calories">0</span> kcal</p>
+        <p><strong>Total Protein:</strong> <span id="total-protein">0</span> g</p>
+        <p><strong>Total Carbs:</strong> <span id="total-carbs">0</span> g</p>
+        <p><strong>Total Fat:</strong> <span id="total-fat">0</span> g</p>
+    </div>
+</div>
+
+<script>
+    let totalCalories = 0;
+    let totalProtein = 0;
+    let totalCarbs = 0;
+    let totalFat = 0;
+
+    function addFood() {
+        const food = document.getElementById("food").value;
+        const calories = parseInt(document.getElementById("calories").value);
+        const protein = parseInt(document.getElementById("protein").value);
+        const carbs = parseInt(document.getElementById("carbs").value);
+        const fat = parseInt(document.getElementById("fat").value);
+
+        if (!food || isNaN(calories) || isNaN(protein) || isNaN(carbs) || isNaN(fat)) {
+            alert("Please fill in all fields correctly!");
+            return;
+        }
+
+        // Add to total values
+        totalCalories += calories;
+        totalProtein += protein;
+        totalCarbs += carbs;
+        totalFat += fat;
+
+        // Update the list
+        const foodList = document.getElementById("food-list");
+        const li = document.createElement("li");
+        li.textContent = `${food}: ${calories} kcal, ${protein}g Protein, ${carbs}g Carbs, ${fat}g Fat`;
+        foodList.appendChild(li);
+
+        // Update total values in result section
+        document.getElementById("total-calories").textContent = totalCalories;
+        document.getElementById("total-protein").textContent = totalProtein;
+        document.getElementById("total-carbs").textContent = totalCarbs;
+        document.getElementById("total-fat").textContent = totalFat;
+
+        // Clear input fields
+        document.getElementById("food").value = '';
+        document.getElementById("calories").value = '';
+        document.getElementById("protein").value = '';
+        document.getElementById("carbs").value = '';
+        document.getElementById("fat").value = '';
+    }
+</script>
+
+</body>
+</html>
